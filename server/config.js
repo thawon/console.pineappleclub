@@ -20,4 +20,11 @@ config.express = {
     staticPath: config.basePath + "/app"
 };
 
+config.mongodb = {
+    port: process.env.MONGODB_PORT || 27017,
+    host: process.env.MONGODB_HOST || "localhost",
+    database: "console",
+    url: "mongodb://MongoLab-bx:31lxdAi0BeqlQ_5m5hkJ6PjgQDerZhYV8HpR4QeUAlU-@ds030827.mongolab.com:30827/MongoLab-bx"
+};
+
 module.exports = config;

@@ -1,6 +1,6 @@
 {
-	"name": "pineapple-club",
-	"description": "Pineapple Club website",
+	"name": "console-pineapple-club",
+	"description": "Console Pineapple Club",
 	"version": "0.0.1",
 	"dependencies": {
 		"express": "~4.0.0",
@@ -9,7 +9,12 @@
 		"method-override": "~1.0.0",
 		"consolidate": "0.x.x",
 		"ejs": "x.x.x",
-		"jade": "~1.7.0"
+		"jade": "~1.7.0",
+		"passport": "x.x.x",
+		"passport-local": "x.x.x",
+		"mongodb": "x.x.x",
+		"mongoose": "x.x.x",
+		"connect-mongo":"x.x.x"
 	},
 	"devDependencies": {
 		"karma": "~0.12.23",
@@ -26,6 +31,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/thawon/pineappleclub.git"
+		"url": "https://github.com/thawon/console.pineappleclub.git"
 	}
 }

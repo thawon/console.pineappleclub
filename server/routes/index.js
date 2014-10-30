@@ -5,9 +5,9 @@
 router.get("*", function (req, res) {
     var page = { environmentScript: "scripts/main" };
 
-    //if (process.env.PORT) {
-    //    page.environmentScript = "scripts/optimized";
-    //}
+    if (process.env.PORT) {
+        page.environmentScript = "scripts/optimized";
+    }
 
     res.render("index", { page: page });
 });
