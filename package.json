@@ -14,7 +14,8 @@
 		"passport-local": "x.x.x",
 		"mongodb": "x.x.x",
 		"mongoose": "x.x.x",
-		"connect-mongo":"x.x.x"
+		"connect-mongo":"x.x.x",
+		"requirejs": "~2.1.15"
 	},
 	"devDependencies": {
 		"karma": "~0.12.23",
