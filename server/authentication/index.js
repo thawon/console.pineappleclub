@@ -1,4 +1,13 @@
-﻿module.exports = function (app) {
+﻿define(
+    ["authentication/account-factory", "passport", "passport-local"],
+    function (AccountFactory, passport, passportLocal) {
+        var LocalStrategy = passportLocal.Strategy,
+        account = factory.create();
+
+
+    });
+
+module.exports = function (app) {
     var AccountFactory = require("./server/auth/account-factory"),        
         passport = require("passport"),
         passportLocal = require("passport-local"),

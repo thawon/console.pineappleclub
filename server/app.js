@@ -13,7 +13,7 @@
         app.use(bodyParser.json());
         app.use(methodOverride());
 
-        //require("authentication/index")(app);
+        require("authentication/index")(app);
 
         app.use("/", indexRoute);
         app.use("/api/auth", authRoute);

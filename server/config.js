@@ -1,10 +1,10 @@
 ﻿define(
     ["module", "path", "consolidate"],
     function (module, path, consolidate) {
-        var config = {},
+        var config = {},            
             dirname = path.normalize(path.dirname(module.uri));
-
-        config.basePath = path.normalize(dirname);
+        
+        config.basePath = path.normalize(dirname + "/..");
 
         config.express = {
             port: process.env.port || 3000,
@@ -12,12 +12,14 @@
             key: "connect.sid",
             secret: "console.pineappleclub_secret",
             view: {
-                path: path.normalize(dirname + "\\app"),
+                path: config.basePath + "/server/views",
                 engine: {
                     type: "jade",
                     driver: consolidate.jade
                 }
-            },
+            },           
+            
+            // base directory 
             staticPath: config.basePath + "/app"
         };
 

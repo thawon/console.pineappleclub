@@ -4,7 +4,7 @@
         var account = AccountFactory.create(),
             router = express.Router();
 
-        router.post("/login", account.login);
+        router.post("/login", passport.authenticate("local"), account.login);
 
         return router;
     });
