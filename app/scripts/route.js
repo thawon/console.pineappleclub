@@ -12,6 +12,12 @@
                     dependencies: [
                         "controllers/login/login-controller"
                     ]
+                },
+                "/signup": {
+                    templateUrl: "views/signup/signup.html",
+                    dependencies: [
+                        "controllers/signup/signup-controller"
+                    ]
                 }
             }
         };

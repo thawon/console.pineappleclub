@@ -8,10 +8,13 @@ requirejs.config({
 
     paths: {
         app: "server/app",
+
         config: "server/config",
 
-        routes: "server/routes",
+        models: "server/models",
 
+        routes: "server/routes",
+        
         authentication: "server/authentication"
     }
 });
