@@ -4,16 +4,16 @@
         return function (passport) {
             var router = express.Router();
 
-            router.post("/signup", function (req, res, next) {
-                passport.authenticate("local-signup", function (err, user, info) {
+            router.post("/login", function (req, res, next) {
+                passport.authenticate("local-login", function (err, user, info) {
                     if (err) {
                         // will generate a 500 error
-                        return next(err); 
+                        return next(err);
                     }
 
                     // Generate a JSON response reflecting authentication status
-                    if (info === "EMAILEXISTED") {
-                        return res.send({ success: false, message: "Email already exists" });
+                    if (!user) {
+                        return res.send({ success: false, message: "The email or password you entered is incorrect.", user: null });
                     }
 
                     return res.send({ success: true, user: user });

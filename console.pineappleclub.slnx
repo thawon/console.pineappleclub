@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "console.pineappleclub", ".", "{C82FE7AA-0DCB-4380-B704-67201B2E5AB8}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "console.pineappleclub", "..\console.pineappleclub", "{C82FE7AA-0DCB-4380-B704-67201B2E5AB8}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/website"

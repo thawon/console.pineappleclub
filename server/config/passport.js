@@ -19,12 +19,42 @@
                 });
             });
 
-            // LOCAL SIGNUP ============================================================
-            passport.use("local-signup", new LocalStrategy({
-                // by default, local strategy uses username and password, we will override with email
+            // LOCAL LOGIN ============================================================
+            passport.use("local-login", new LocalStrategy({                
                 usernameField: "email",
                 passwordField: "password",
-                passReqToCallback: true // allows us to pass back the entire request to the callback
+                // allows us to pass back the entire request to the callback
+                passReqToCallback: true 
+            },
+            function (req, email, password, done) {
+
+                // find a user whose email is the same as the forms email
+                // we are checking to see if the user trying to login already exists
+                User.findOne({ "local.email": email }, function (err, user) {
+                    // if there are any errors, return the error before anything else
+                    if (err)
+                        return done(err);
+
+                    // if no user is found, return the message
+                    if (!user)
+                        return done(null, false, { message: "User is not found." }); 
+
+                    // if the user is found but the password is wrong
+                    if (!user.validPassword(password))
+                        return done(null, false, { message: "Password is incorrect." });
+
+                    // all is well, return successful user
+                    return done(null, user);
+                });
+
+            }));
+
+            // LOCAL SIGNUP ============================================================
+            passport.use("local-signup", new LocalStrategy({                
+                usernameField: "email",
+                passwordField: "password",
+                // allows us to pass back the entire request to the callback
+                passReqToCallback: true 
             },
             function (req, email, password, done) {
 
@@ -41,7 +71,7 @@
 
                         // check to see if theres already a user with that email
                         if (user) {
-                            return done(null, false, req.flash("signupMessage", "That email is already taken."));
+                            return done(null, false, { message: "EMAILEXISTED" });
                         } else {
 
                             // if there is no user with that email
@@ -65,7 +95,6 @@
                 });
 
             }));
-
 
         }
     });

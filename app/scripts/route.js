@@ -18,7 +18,10 @@
                     dependencies: [
                         "controllers/signup/signup-controller"
                     ]
-                }
+                },
+                "/profile": {                    
+                    templateUrl: "views/profile.html"
+                },
             }
         };
     });

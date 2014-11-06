@@ -1,35 +1,27 @@
 ﻿define(
-    ["controllerFactory", "services/auth-service", "constants/auth-events"],
-    function (factory) {
+    ["app", "services/signup-service", "constants/auth-events"],
+    function (app) {
         "use strict";
-        factory.create({
-            name: "LoginController",
-            dependencies: [
-                    "$scope",
-                    "$rootScope",
-                    "AuthService",
-                    "AUTH_EVENTS"
-                ],
-            controller: function ($scope, $rootScope, AuthService, AUTH_EVENTS) {
-                var that = this;
 
-                this.initialise(arguments);
-
+        app.controller("LoginController",
+            ["$scope", "$rootScope", "AuthService", "AUTH_EVENTS",
+            function ($scope, $rootScope, AuthService, AUTH_EVENTS) {
                 $scope.credentials = {
-                    username: "",
+                    email: "",
                     password: ""
                 };
 
-                $scope.login = $.proxy(that.login, that);
-            },
-            login: function (credentials) {
-                this.AuthService.login(credentials)
-                .then(function (user) {
-                    this.$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                    this.$scope.setCurrentUser(user);
-                }, function () {
-                    this.$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-                });
+                $scope.login = function (credentials) {
+                    AuthService.login(credentials)
+                        .then(function (data) {
+                            if (data.success) {
+                                $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                                $scope.setCurrentUser(data.user);
+                            } else {
+                                $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                            }
+                        });
+                }
             }
-        });
+        ]);
     });

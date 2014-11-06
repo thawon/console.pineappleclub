@@ -1,24 +1,18 @@
 ﻿define(
-    ["controllerFactory", "constants/user-role", "services/auth-service"],
-    function (factory) {
+    ["app", "constants/user-role", "services/auth-service"],
+    function (app) {
         "use strict";
 
-        factory.create({
-            name: "ApplicationController",
-            dependencies: [
-                    "$scope",
-                    "USER_ROLES",
-                    "AuthService"
-                ],
-            controller: function ($scope, USER_ROLES, AuthService) {
-                this.initialise(arguments);
-
+        app.controller("ApplicationController",
+            ["$scope", "USER_ROLES", "AuthService",
+            function ($scope, USER_ROLES, AuthService) {
                 $scope.currentUser = null;
                 $scope.userRoles = USER_ROLES;
                 $scope.isAuthorized = AuthService.isAuthorized;
-            },
-            setCurrentUser: function (user) {
-                $scope.currentUser = user;
+
+                $scope.currentUser = function (user) {
+                    $scope.currentUser = user;
+                }
             }
-        });
+        ]);
     });

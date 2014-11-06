@@ -6,12 +6,16 @@
                 var authService = {};
 
                 authService.login = function (credentials) {
-                    return $http
-                          .post("/api/auth/login", credentials)
-                          .then(function (res) {
-                              Session.create(res.data.id, res.data.user.id,
-                                           res.data.user.role);
-                              return res.data.user;
+                    return $http.post("/login", credentials).then(function (res) {
+                            var data = res.data,
+                                user;
+
+                              if (data.success) {
+                                  user = data.user;
+                                  Session.create(user.id, user.id, "admin");
+                              }
+
+                              return data;
                           });
                 };
 
@@ -24,7 +28,7 @@
                         authorizedRoles = [authorizedRoles];
                     }
 
-                    return (authService.isAuthenticated() 
+                    return (authService.isAuthenticated()
                             && authorizedRoles.indexOf(Session.userRole) !== -1);
                 };
 
