@@ -1,9 +1,9 @@
 define(
-    ["angular", "ngResource", "ngProgress", "route", "dependencyResolver"],
-    function (angular, ngResource, ngProgress, config, dependencyResolver) {
+    ["angular", "ngResource", "ngProgress", "ngRoute", "route", "dependencyResolver"],
+    function (angular, ngResource, ngProgress, ngRoute, config, dependencyResolver) {
         "use strict";
 
-        var app = angular.module("console.pineappleclub", ["ngResource", "ngProgress"]);
+        var app = angular.module("console.pineappleclub", ["ngResource", "ngProgress", "ngRoute"]);
 
         app.config([
             "$routeProvider",
@@ -28,6 +28,7 @@ define(
                         path,
                         {
                             templateUrl: route.templateUrl,
+                            data: route.data,
                             resolve: dependencyResolver(route.dependencies)
                         });
                 });
@@ -38,7 +39,11 @@ define(
                     { redirectTo: config.defaultRoutePaths });
             }
 
-            $locationProvider.html5Mode(true);
+            $locationProvider.html5Mode({
+                enabled: true,
+                requireBase: true
+            });
+
         } ]);
 
         return app;

@@ -4,6 +4,8 @@ require.config({
         angular: "vendors/angular.min",
         ngResource: "vendors/angular-resource.min",
         ngProgress: "vendors/ngProgress.min",
+        ngRoute: "vendors/angular-route.min",
+        uiRouter: "vendors/angular-ui-router.min",
         jquery: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
         underscore: "vendors/underscore-min",
         bootstrap: "vendors/bootstrap.min",
@@ -21,6 +23,12 @@ require.config({
             deps: ["angular"]
         },
         ngProgress: {
+            deps: ["angular"]
+        },
+        ngRoute: {
+            deps: ["angular"]
+        },
+        uiRouter: {
             deps: ["angular"]
         },
         angular: {

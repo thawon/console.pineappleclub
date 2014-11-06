@@ -8,7 +8,8 @@
                         home: { name: "home", display: "Home", path: "/" },
                         tracker: { name: "tracker", display: "Tracker", path: "/tracker" },
                         helpdesk: { name: "helpdesk", display: "Help desk", path: "/helpdesk" },
-                        contact: { name: "contact", display: "Contact us", path: "/contactus" }
+                        contact: { name: "contact", display: "Contact us", path: "/contactus" },
+                        profile: { name: "profile", display: "Profile", path: "/profile" }
                     };
 
                 navigator.pages = {
@@ -18,7 +19,8 @@
                         items: [
                             items.home,
                             items.tracker,
-                            items.helpdesk
+                            items.helpdesk,
+                            items.profile
                         ]
                     },
                     footer: {

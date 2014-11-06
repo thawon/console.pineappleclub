@@ -1,8 +1,9 @@
 ﻿define(
     ["app", "angular", "services/session-service"],
     function (app, angular) {
-        app.factory("AuthService", ["$http", "Session",
-            function ($http, Session) {
+        app.factory("AuthService", ["$injector", "Session",
+            function ($injector, Session) {
+                var $http = $injector.get("$http");
                 var authService = {};
 
                 authService.login = function (credentials) {
