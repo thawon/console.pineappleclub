@@ -4,8 +4,9 @@ require.config({
         angular: "vendors/angular.min",
         ngResource: "vendors/angular-resource.min",
         ngProgress: "vendors/ngProgress.min",
-        ngRoute: "vendors/angular-route.min",
+        angularAMD: "vendors/angularAMD",
         uiRouter: "vendors/angular-ui-router.min",
+        uiRouterExtras: "vendors/ct-ui-router-extras.min",
         jquery: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
         underscore: "vendors/underscore-min",
         bootstrap: "vendors/bootstrap.min",
@@ -25,10 +26,13 @@ require.config({
         ngProgress: {
             deps: ["angular"]
         },
-        ngRoute: {
+        angularAMD: {
+            deps: ["angular"]
+        },        
+        uiRouter: {
             deps: ["angular"]
         },
-        uiRouter: {
+        uiRouterExtras: {
             deps: ["angular"]
         },
         angular: {
@@ -51,6 +55,6 @@ require(
         "start-up"
     ],
     function (angular, app) {
-        angular.bootstrap(document, ["console.pineappleclub"]); 
+        //angular.bootstrap(document, ["console.pineappleclub"]); 
     }
 );

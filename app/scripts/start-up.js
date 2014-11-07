@@ -3,5 +3,6 @@
      "controllers/navigator-controller",
      "controllers/footer-controller",
      "controllers/progress-controller",
-     "run"],
+     "run",
+     "future-state"],
     function () { });

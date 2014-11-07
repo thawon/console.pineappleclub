@@ -1,0 +1,9 @@
+[
+  {
+    "stateName": "Login",
+    "urlPrefix": "/login",
+    "templateUrl": "views/login/login.html",
+    "type": "requireCtrl",
+    "src": "controllers/login/login-controller.js"
+  }
+]
