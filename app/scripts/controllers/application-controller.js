@@ -6,13 +6,13 @@
         app.controller("ApplicationController",
             ["$scope", "USER_ROLES", "AuthService",
             function ($scope, USER_ROLES, AuthService) {
-                $scope.currentUser = null;
-                $scope.userRoles = USER_ROLES;
-                $scope.isAuthorized = AuthService.isAuthorized;
+                var user = AuthService.getCurrentUser();
 
-                $scope.currentUser = function (user) {
+                $scope.setCurrentUser = function (user) {
                     $scope.currentUser = user;
                 }
+
+                $scope.setCurrentUser(user);
             }
         ]);
     });

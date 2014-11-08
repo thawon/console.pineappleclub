@@ -8,7 +8,7 @@
                         home: { name: "home", display: "Home", path: "/" },
                         tracker: { name: "tracker", display: "Tracker", path: "/tracker" },
                         helpdesk: { name: "helpdesk", display: "Help desk", path: "/helpdesk" },
-                        contact: { name: "contact", display: "Contact us", path: "/contactus" },
+                        login: { name: "login", display: "Login", path: "/login" },
                         profile: { name: "profile", display: "Profile", path: "/profile" }
                     };
 
@@ -18,8 +18,7 @@
                         display: "Menu",
                         items: [
                             items.home,
-                            items.tracker,
-                            items.helpdesk,
+                            items.login,
                             items.profile
                         ]
                     },

@@ -7,6 +7,10 @@
             $rootScope.$on("$stateChangeStart", function (event, next) {
                 var authorizedRoles = next.data.authorizedRoles;
 
+                if (authorizedRoles[0] === "*") {
+                    return;
+                }
+
                 if (!AuthService.isAuthorized(authorizedRoles)) {
 
                     event.preventDefault();

@@ -1,37 +1,60 @@
 ﻿define(
-    ["app", "angular", "services/session-service"],
+    ["app", "angular"],
     function (app, angular) {
-        app.factory("AuthService", ["$injector", "Session",
-            function ($injector, Session) {
-                var $http = $injector.get("$http");
-                var authService = {};
+        app.factory("AuthService", ["$injector", "$cookieStore",
+            function ($injector, $cookieStore) {
+                var $http = $injector.get("$http"),
+                    authService = {};
 
-                authService.login = function (credentials) {
-                    return $http.post("/login", credentials).then(function (res) {
-                            var data = res.data,
-                                user;
+                authService.login = function (credentials, callback) {
+                    return $http.post("/login", credentials).
+                        success(function (data, status, headers, config) {
+                            if (data.success) {
+                                var user = data.user.local;
+                                user.userRole = "admin";
 
-                              if (data.success) {
-                                  user = data.user;
-                                  Session.create(user.id, user.id, "admin");
-                              }
+                                $cookieStore.put("user", user);
+                            }
 
-                              return data;
-                          });
+                            return data;
+                        }).
+                        error(function (data, status, headers, config) {
+                            callback();
+                        });
+                };
+
+                authService.logout = function () {
+                    return $http.post("/logout").then(function (res) {
+                        var data = res.data;
+
+                        if (data.success) {
+                            $cookieStore.remove("user");
+                        }
+
+                        return data;
+                    });
                 };
 
                 authService.isAuthenticated = function () {
-                    return !!Session.userId;
+                    return !!authService.getCurrentUser();
                 };
 
                 authService.isAuthorized = function (authorizedRoles) {
+                    var currentUser = authService.getCurrentUser()
+
                     if (!angular.isArray(authorizedRoles)) {
                         authorizedRoles = [authorizedRoles];
                     }
 
                     return (authService.isAuthenticated()
-                            && authorizedRoles.indexOf(Session.userRole) !== -1);
+                            && authorizedRoles.indexOf(currentUser.userRole) !== -1);
                 };
+
+                authService.getCurrentUser = function () {
+                    var user = $cookieStore.get("user");
+
+                    return (user) ? user : null;
+                }
 
                 return authService;
             }

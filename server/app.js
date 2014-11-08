@@ -8,27 +8,33 @@
             session = require("express-session"),
             mongoose = require("mongoose"),
             passport = require("passport"),
+            MongoStore = require("connect-mongo")(session),
             app = express();
 
         // configuration ===============================================================
         mongoose.connect(config.db.url); // connect to our database
-
+        
         require('./config/passport')(passport); // pass passport for configuration
 
         // express application ==============================================
         // read cookies (needed for auth)
         app.use(cookieParser());
         // get information from html forms
-        app.use(bodyParser()); 
+        app.use(bodyParser());
 
         app.engine(config.express.view.engine.type, config.express.view.engine.driver);
         app.set("view engine", config.express.view.engine.type);
         app.set("views", config.express.view.path);
 
         app.use(express.static(config.express.staticPath));
-        
+
         // required for passport
-        app.use(session({ secret: config.express.secret })); 
+        app.use(session({
+            secret: config.express.secret,
+            store: new MongoStore({
+                url: config.db.url
+            })
+        }));
         // session secret
         app.use(passport.initialize());
         // persistent login sessions
@@ -36,7 +42,7 @@
 
         // routes ======================================================================
         // load our routes and pass in our app and fully configured passport
-        require("routes/index")(app, passport); 
+        require("routes/index")(app, passport);
 
         app.listen(config.express.port, function (req, res) {
             console.log("express is listening on http://" +

@@ -1,24 +1,9 @@
-define(
-    ["angular", "angularAMD", "ngResource", "ngCookies", "ngProgress", "uiRouterExtras", "uiRouter"],
-    function (angular, angularAMD) {
-        "use strict";
-
-        var app = angular.module("console.pineappleclub",
-            ["ngResource", "ngProgress", "ngCookies", "ct.ui.router.extras"]);
-
+﻿define(
+    ["app"],
+    function (app) {
         app.config([
-            "$futureStateProvider", "$locationProvider", "$controllerProvider",
-            "$compileProvider", "$filterProvider", "$provide",
-        function ($futureStateProvider, $locationProvider, $controllerProvider,
-                    $compileProvider, $filterProvider, $provide) {
-
-            app.controller = $controllerProvider.register;
-            app.directive = $compileProvider.directive;
-            app.filter = $filterProvider.register;
-            app.factory = $provide.factory;
-            app.service = $provide.service;
-            app.constant = $provide.constant;
-
+        "$futureStateProvider",
+        function ($futureStateProvider) {
             var loadAndRegisterFutureStates = function ($http) {
                 return $http.get("futureStates.json").then(function (resp) {
                     angular.forEach(resp.data, function (fstate) {
@@ -38,17 +23,16 @@ define(
 
                 // Tell RequireJS to load lazyController 
                 // (leave off the .js)
-                require([futureState.controllerPath], function (loginController) {
+                require(["controllers/login/login-controller"], function (loginController) {
                     // RequireJS asynchronousely gives us the result of 
                     // lazyController.js as the 'lazyController' parameter
 
                     // Define the full UI-Router state using the 
                     // lazyController and the injected futureState 
-                    var fullstate = { controller: futureState.controllerName,
+                    var fullstate = { controller: "LoginController",
                         name: futureState.stateName,
                         url: futureState.urlPrefix,
-                        templateUrl: futureState.templateUrl,
-                        data: futureState.data
+                        templateUrl: futureState.templateUrl
                     };
 
                     // Resolve the promise with the full UI-Router state.
@@ -58,14 +42,5 @@ define(
                 // The state factory returns the promise
                 return d.promise;
             }
-
-            $locationProvider.html5Mode({
-                enabled: true,
-                requireBase: true
-            });
-
         } ]);
-
-        return app;
-    }
-);
+    });
