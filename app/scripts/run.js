@@ -1,9 +1,9 @@
 ﻿define(
     ["app", "constants/auth-events"],
-    function (app) {
+    function (app, AUTH_EVENTS) {
         app.run([
-        "$rootScope", "AUTH_EVENTS", "AuthService",
-        function ($rootScope, AUTH_EVENTS, AuthService) {
+        "$rootScope", "AuthService",
+        function ($rootScope, AuthService) {
             $rootScope.$on("$stateChangeStart", function (event, next) {
                 var authorizedRoles = next.data.authorizedRoles;
 

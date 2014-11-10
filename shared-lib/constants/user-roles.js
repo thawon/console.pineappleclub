@@ -3,11 +3,11 @@
     function (_, fix) {
         var USER_ROLES = _.extend(fix);
 
-        USER_ROLES.set("enums.userRoles", 
+        USER_ROLES.set("constants.userRoles", 
         {
-            ADMIN: 0,
-            NOT_SET: -1
+            admin: "admin",
+            parent: "parent"
         });
 
-        return USER_ROLES.get("enums.userRoles");
+        return USER_ROLES.get("constants.userRoles");
     });

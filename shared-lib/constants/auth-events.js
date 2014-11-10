@@ -1,9 +1,9 @@
 ﻿define(
     ["underscore", "sharedLib/fix-variables"],
     function (_, fix) {
-        var USER_ROLES = _.extend(fix);
+        var AUTH_EVENTS = _.extend(fix);
 
-        USER_ROLES.set("enums.authEvents",
+        AUTH_EVENTS.set("constants.authEvents",
         {
             loginSuccess: "auth-login-success",
             loginFailed: "auth-login-failed",
@@ -11,9 +11,8 @@
             logoutFailed: "auth-logout-failed",
             sessionTimeout: "auth-session-timeout",
             notAuthenticated: "auth-not-authenticated",
-            notAuthorized: "auth-not-authorized",
-            NOT_SET: -1
+            notAuthorized: "auth-not-authorized"
         });
 
-        return USER_ROLES.get("enums.userRoles");
+        return AUTH_EVENTS.get("constants.authEvents");
     });

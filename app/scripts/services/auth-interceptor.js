@@ -1,9 +1,9 @@
 ﻿define(
     ["app", "constants/auth-events", "services/auth-service"],
-    function (app) {
+    function (app, AUTH_EVENTS) {
         app.factory("AuthInterceptor",
-            ["$rootScope", "$q", "AUTH_EVENTS",
-            function ($rootScope, $q, AUTH_EVENTS) {
+            ["$rootScope", "$q",
+            function ($rootScope, $q) {
                 return {
                     responseError: function (res) {
                         $rootScope.$broadcast({

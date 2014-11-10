@@ -13,9 +13,9 @@ require.config({
         bootstrap: "vendors/bootstrap.min",
         async: "vendors/async",
 
-        sharedLib: "/shared-lib",
+        sharedLib: "../../shared-lib",
 
-        constantsx: "/shared-lib/constants"
+        constants: "../../shared-lib/constants"
     },
     shim: {        
         ngResource: {

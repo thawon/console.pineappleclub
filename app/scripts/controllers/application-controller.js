@@ -1,11 +1,11 @@
 ﻿define(
-    ["app", "constants/user-role", "services/auth-service"],
+    ["app", "services/auth-service"],
     function (app) {
         "use strict";
 
         app.controller("ApplicationController",
-            ["$scope", "USER_ROLES", "AuthService",
-            function ($scope, USER_ROLES, AuthService) {
+            ["$scope", "AuthService",
+            function ($scope, AuthService) {
                 var user = AuthService.getCurrentUser();
 
                 $scope.setCurrentUser = function (user) {

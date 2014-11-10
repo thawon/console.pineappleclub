@@ -1,11 +1,11 @@
 ﻿define(
     ["app", "constants/auth-events"],
-    function (app) {
+    function (app, AUTH_EVENTS) {
         "use strict";
 
         app.controller("LoginController",
-            ["$scope", "$rootScope", "$cookieStore", "AuthService", "AUTH_EVENTS",
-            function ($scope, $rootScope, $cookieStore, AuthService, AUTH_EVENTS) {
+            ["$scope", "$rootScope", "$cookieStore", "AuthService",
+            function ($scope, $rootScope, $cookieStore, AuthService) {
                 $scope.credentials = {
                     email: "",
                     password: ""

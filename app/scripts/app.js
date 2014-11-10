@@ -1,10 +1,9 @@
 define(
-    ["angular", "angularAMD", "constantsx/user-roles", "ngResource", "ngCookies", "ngProgress", "uiRouterExtras", "uiRouter"],
-    function (angular, angularAMD, USER_ROLES) {
+    ["angular", "angularAMD", "future-states", "ngResource", "ngCookies", "ngProgress", "uiRouterExtras", "uiRouter"],
+    function (angular, angularAMD, futureStates) {
         "use strict";
 
-        var app = angular.module("console.pineappleclub",
-            ["ngResource", "ngProgress", "ngCookies", "ct.ui.router.extras"]);
+        var app = angular.module("console.pineappleclub", ["ngResource", "ngProgress", "ngCookies", "ct.ui.router.extras"]);
 
         app.config([
             "$futureStateProvider", "$locationProvider", "$controllerProvider",
@@ -19,31 +18,11 @@ define(
             app.service = $provide.service;
             app.constant = $provide.constant;
 
-            var loadAndRegisterFutureStates = function ($http) {
-                return $http.get("futureStates.json").then(function (resp) {
-                    angular.forEach(resp.data, function (fstate) {
-                        // Register each state returned from $http.get() with $futureStateProvider
-                        $futureStateProvider.futureState(fstate);
-                    });
-                });
-            }
-
-            // Register state factory that registers controller via eval.
-            $futureStateProvider.stateFactory("requireCtrl", requireCtrlStateFactory);
-
-            $futureStateProvider.addResolve(loadAndRegisterFutureStates);
-
             function requireCtrlStateFactory($q, futureState) {
-                var d = $q.defer(); // make a deferred
+                var d = $q.defer();
 
-                // Tell RequireJS to load lazyController 
-                // (leave off the .js)
-                require([futureState.controllerPath], function (loginController) {
-                    // RequireJS asynchronousely gives us the result of 
-                    // lazyController.js as the 'lazyController' parameter
-
-                    // Define the full UI-Router state using the 
-                    // lazyController and the injected futureState 
+                // Tell RequireJS to lazy load
+                require([futureState.controllerPath], function (controller) {
                     var fullstate = { controller: futureState.controllerName,
                         name: futureState.stateName,
                         url: futureState.urlPrefix,
@@ -57,7 +36,18 @@ define(
 
                 // The state factory returns the promise
                 return d.promise;
-            }
+            };
+
+            var loadAndRegisterFutureStates = function () {
+                angular.forEach(futureStates, function (futureState) {
+                    $futureStateProvider.futureState(futureState);
+                });
+            };
+
+            // Register state factory that registers controller via eval.
+            $futureStateProvider.stateFactory("requireCtrl", requireCtrlStateFactory);
+
+            $futureStateProvider.addResolve(loadAndRegisterFutureStates);
 
             $locationProvider.html5Mode({
                 enabled: true,
