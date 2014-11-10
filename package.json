@@ -18,7 +18,8 @@
 		"mongoose": "x.x.x",
 		"connect-mongo":"x.x.x",
 		"requirejs": "~2.1.15",
-		"bcrypt-nodejs" : "latest"
+		"bcrypt-nodejs" : "latest",
+		"underscore" : "~1.7.0"
 	},
 	"devDependencies": {
 		"karma": "~0.12.23",

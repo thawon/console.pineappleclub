@@ -1,6 +1,6 @@
 define(
-    ["angular", "angularAMD", "ngResource", "ngCookies", "ngProgress", "uiRouterExtras", "uiRouter"],
-    function (angular, angularAMD) {
+    ["angular", "angularAMD", "constantsx/user-roles", "ngResource", "ngCookies", "ngProgress", "uiRouterExtras", "uiRouter"],
+    function (angular, angularAMD, USER_ROLES) {
         "use strict";
 
         var app = angular.module("console.pineappleclub",

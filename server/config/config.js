@@ -20,7 +20,10 @@
             },           
             
             // base directory 
-            staticPath: config.basePath + "/app"
+            staticPath: config.basePath + "/app",
+
+            // shared libraries
+            sharedLibPath: config.basePath + "/shared-lib"
         };
 
         config.db = {

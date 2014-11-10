@@ -1,5 +1,5 @@
 ﻿define(
-    ["app", "services/signup-service", "constants/auth-events"],
+    ["app", "constants/auth-events"],
     function (app) {
         "use strict";
 

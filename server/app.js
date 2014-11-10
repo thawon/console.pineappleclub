@@ -10,10 +10,10 @@
             passport = require("passport"),
             MongoStore = require("connect-mongo")(session),
             app = express();
-
+            
         // configuration ===============================================================
         mongoose.connect(config.db.url); // connect to our database
-        
+
         require('./config/passport')(passport); // pass passport for configuration
 
         // express application ==============================================
@@ -27,6 +27,7 @@
         app.set("views", config.express.view.path);
 
         app.use(express.static(config.express.staticPath));
+        app.use("/shared-lib", express.static(config.express.sharedLibPath));
 
         // required for passport
         app.use(session({

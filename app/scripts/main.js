@@ -13,12 +13,9 @@ require.config({
         bootstrap: "vendors/bootstrap.min",
         async: "vendors/async",
 
-        /* services */
-        dependencyResolver: "services/dependency-resolver-service",
+        sharedLib: "/shared-lib",
 
-        /* infrastructures */
-        controllerFactory: "infrastructures/controller-factory",
-        utility: "infrastructures/utility"
+        constantsx: "/shared-lib/constants"
     },
     shim: {        
         ngResource: {

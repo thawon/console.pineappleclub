@@ -1,29 +1,17 @@
 ﻿define(
-    ["controllerFactory", "services/app-configuration-service", "services/navigator-service"],
-    function (factory) {
+    ["app", "services/app-configuration-service", "services/navigator-service"],
+    function (app) {
         "use strict";
 
-        factory.create({
-            name: "NavigatorController",
-            configs: {
-                ELE_SIDEBAR: ".row-offcanvas",
-                CONS_ACTIVE: "active"
-            },
-            dependencies: [
-                    "$scope",
-                    "AppConfigurationService",
-                    "NavigatorService"
-                ],
-            controller: function ($scope, appConfigurationService, navigatorService) {
-                this.initialise(arguments);
-
+        app.controller("NavigatorController",
+            ["$scope", "AppConfigurationService", "NavigatorService",
+            function ($scope, appConfigurationService, navigatorService) {
                 $scope.project = appConfigurationService.project;
                 $scope.menu = navigatorService.pages.main;
 
-                $scope.toggleSideBar = $.proxy(this.toggleSideBar, this);
-            },
-            toggleSideBar: function () {
-                $(this.ELE_SIDEBAR).toggleClass(this.CONS_ACTIVE);
+                $scope.toggleSideBar = function () {
+                    $(".row-offcanvas").toggleClass("active");
+                }
             }
-        });
+        ]);
     });
