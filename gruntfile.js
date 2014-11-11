@@ -19,21 +19,19 @@ module.exports = function (grunt) {
             production: {
                 options: {
                     baseUrl: "./app/scripts",
-					mainConfigFile: "./app/scripts/main.js",
-					name: "main",
-					include: [
-						"controllers/contact/contact-controller"
-					],
-					out: "./app/scripts/optimized.js",
-					uglify: {
-						except: [
-							"$scope",
-							"$location",
-							"device", 
-							"exports"
-						]
-						//, beautify: true
-					}
+                    mainConfigFile: "./app/scripts/main.js",
+                    name: "main",
+                    include: [
+                        "controllers/home-controller",
+                        "controllers/auth/login-controller"
+                    ],
+                    out: "./app/scripts/optimized.js",
+                    uglify: {
+                        except: [
+                            "futureState",
+                            "$q"
+                        ]
+                    }
                 }
             }
         }

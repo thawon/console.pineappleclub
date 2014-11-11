@@ -1,0 +1,12 @@
+﻿<!-- sb = side bar -->
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation" ng-controller="SideBarController" 
+    style="padding-left:0;">    
+    <div class="hidden-sm hidden-md hidden-lg">
+        <ul id="sidebar_ul" class="list-group list-no-bullet"> <!-- pcd-device-height -->
+            <li ng-repeat="item in menu.items">
+                <a class="list-group-item side-bar-link" ng-href="{{item.path}}" ng-bind="item.display" ng-click="toggleSideBar()"></a>
+            </li>            
+            <span ng-bind="project.name"></span>
+        </ul>
+    </div>
+</div>

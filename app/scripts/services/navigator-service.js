@@ -1,14 +1,17 @@
 ﻿define(
     ["app"],
     function (app) {
-        app.factory("NavigatorService", [
-            function () {
+        app.factory("NavigatorService", ["AppConfigurationService",
+            function (appConfigurationService) {
                 var navigator = {},
                     items = {
                         home: { name: "home", display: "Home", path: "/" },
                         tracker: { name: "tracker", display: "Tracker", path: "/tracker" },
                         helpdesk: { name: "helpdesk", display: "Help desk", path: "/helpdesk" },
+                        about: { name: "about", display: "About", path: "/about" },
+                        contact: { name: "contact", display: "Contact", path: "/contact" },
                         login: { name: "login", display: "Login", path: "/login" },
+                        signup: { name: "signup", display: "Signup", path: "/signup" },
                         profile: { name: "profile", display: "Profile", path: "/profile" }
                     };
 
@@ -23,20 +26,13 @@
                         ]
                     },
                     footer: {
-                        about: {
-                            name: "support",
-                            display: "Support",
-                            items: [
-                                items.helpdesk
-                            ]
-                        },
-                        social: {
-                            name: "about",
-                            display: "About",
-                            items: [
+                        name: "footer",
+                        display: appConfigurationService.companyInfo.name,
+                        items: [
+                                items.about,
+                                items.helpdesk,
                                 items.contact
-                            ]
-                        }
+                        ]
                     }
                 };
                 

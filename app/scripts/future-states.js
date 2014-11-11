@@ -32,6 +32,17 @@
                 data: {
                     authorizedRoles: [USER_ROLES.admin]
                 }
+            },
+            {
+                stateName: "Signup",
+                urlPrefix: "/signup",
+                templateUrl: "views/signup/signup.html",
+                type: "requireCtrl",
+                controllerPath: "controllers/signup/signup-controller",
+                controllerName: "SignupController",
+                data: {
+                    authorizedRoles: ["*"]
+                }
             }
         ];
     });

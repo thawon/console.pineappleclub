@@ -10,6 +10,7 @@
                 };
 
                 configuration.companyInfo = {
+                    name: "Pineapple Club",
                     location: {
                         lat: -33.947152,
                         lng: 151.129254
