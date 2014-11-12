@@ -30,7 +30,7 @@
                 templateUrl: "views/auth/signout.html",
                 type: "requireCtrl",
                 data: {
-                    authorizedRoles: [USER_ROLES.admin, USER_ROLES.parent]
+                    authorizedRoles: ["*"]
                 }
             },
             {

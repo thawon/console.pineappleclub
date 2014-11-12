@@ -6169,8 +6169,8 @@ button.close {
 .list-no-padding-left {
   padding-left: 0px;
 }
-#hd_user_details_div {
-  color: #808080;
+#hd_sign_out_button {
+  float: right;
 }
 #ft_div {
   padding-right: 20px;
@@ -6185,6 +6185,24 @@ button.close {
 .footer-link {
   font-size: 12px;
   margin-left: 8px;
+}
+#ft_last_sign_in_div {
+  padding: 10px 20px 10px 0;
+}
+#ft_last_sign_in_span {
+  float: right;
+  font-size: 0.9em;
+  color: #808080;
+}
+@media (max-width: 767px) {
+  #ft_last_sign_in_span {
+    font-size: 0.9em;
+  }
+}
+@media (min-width: 1200px) {
+  #ft_last_sign_in_div {
+    padding: 10px 20px 0 0;
+  }
 }
 .form-signin {
   max-width: 330px;

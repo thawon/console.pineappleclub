@@ -3,6 +3,9 @@
     <div class="footer">
         <div class="container">
             <div class="row">
+                <div ng-if="currentUser" id="ft_last_sign_in_div" class="col-lg-12">
+                    <span id="ft_last_sign_in_span">Last signed in 10:00 AM, 20 Oct 2014 AEST</span>
+                </div>
                 <div id="ft_div" class="col-lg-12">
                     <ul class="list-inline">
                         <span id="ft_header_span" ng-bind="menu.display"></span>

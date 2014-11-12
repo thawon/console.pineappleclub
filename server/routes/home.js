@@ -5,7 +5,7 @@
 
         // catch all route for history
         router.get("*", function (req, res) {
-            var page = { environmentScript: "scripts/main" };
+            var page = { environmentScript: "scripts/optimized" };
 
             if (process.env.PORT) {
                 page.environmentScript = "scripts/optimized";

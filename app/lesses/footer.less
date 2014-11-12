@@ -17,3 +17,25 @@
 	font-size: @font-size-small;
 	margin-left:8px;
 }
+
+#ft_last_sign_in_div{
+	padding:10px 20px 10px 0;
+}
+
+#ft_last_sign_in_span{
+	float:right; 
+	font-size: 0.9em; 
+	color: @app-font-color;
+}
+
+@media (max-width: @screen-xs-max) { 
+	#ft_last_sign_in_span{
+		font-size: 0.9em; 
+	}
+}
+
+@media (min-width: @screen-lg-min) { 
+	#ft_last_sign_in_div{
+		padding:10px 20px 0 0;
+	}
+}

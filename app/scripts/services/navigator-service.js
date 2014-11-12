@@ -21,7 +21,6 @@
                         display: "Menu",
                         items: [
                             items.home,
-                            items.login,
                             items.profile
                         ]
                     },
