@@ -1,0 +1,15 @@
+﻿<!-- hd = header -->
+<div ng-if="currentUser" class="container">
+    <div ng-switch on="currentUser.userRole" class="col-lg-8">
+        <div ng-switch-when="admin">Admin Console</div>
+        <div ng-switch-when="parent">Parent Console</div>
+    </div>
+    <div class="col-lg-4">
+        <div id="hd_user_details_div" class="pull-right">
+            <button type="button" class="btn btn-sm btn-default" ng-click="logout()">Sign out</button>            
+            <span>Logged in as mui@pineappleclub.com.au</span>
+            <span>Mui Faktang</span>
+            <span>Last signed in 10:00 AM, 20 Oct 2014 AEST</span>
+        </div>
+    </div>
+</div>

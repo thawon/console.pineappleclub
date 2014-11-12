@@ -11,10 +11,11 @@ html(lang="en")
     link(rel='stylesheet', href='styles/offcanvas.css')
     link(rel='stylesheet', href='styles/ngProgress.css')
   body(ng-controller="ApplicationController")
-    div.container
-      div.row.row-offcanvas.row-offcanvas-right
+    div.container      
+      div.row.row-offcanvas.row-offcanvas-right        
         div.col-xs-12.col-sm-12
           div(ng-include="'/views/navigator.html'")
+          div(ng-include="'/views/header.html'")
           div(ui-view)
         div(ng-include="'/views/side-bar.html'")
         div(ng-include="'/views/footer.html'")

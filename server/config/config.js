@@ -1,9 +1,9 @@
 ﻿define(
     ["module", "path", "consolidate"],
     function (module, path, consolidate) {
-        var config = {},            
+        var config = {},
             dirname = path.normalize(path.dirname(module.uri));
-        
+
         config.basePath = path.normalize(dirname + "/../..");
 
         config.express = {
@@ -17,8 +17,8 @@
                     type: "jade",
                     driver: consolidate.jade
                 }
-            },           
-            
+            },
+
             // base directory 
             staticPath: config.basePath + "/app",
 
@@ -27,11 +27,12 @@
         };
 
         config.db = {
-            port: process.env.MONGODB_PORT || 27017,
-            host: process.env.MONGODB_HOST || "localhost",
             database: "console",
-            url: "mongodb://console:zzKBugqlYUaCJRsRP9b.KzkxAxWuQJ_DyCClmRKoUmI-@ds041167.mongolab.com:41167/console"
-            //url: "mongodb://localhost:27017/console"
+            url: (process.env.PORT) 
+                    // production connection string
+                    ? "mongodb://console:zzKBugqlYUaCJRsRP9b.KzkxAxWuQJ_DyCClmRKoUmI-@ds041167.mongolab.com:41167/console"
+                    // development connection string
+                    : "mongodb://localhost:27017/console"
         };
 
         return config;

@@ -1,9 +1,9 @@
 ﻿define(
-    ["app", "constants/auth-events"],
+    ["app", "constants/auth-events", "services/future-state-service"],
     function (app, AUTH_EVENTS) {
         app.run([
-        "$rootScope", "AuthService", "ngProgress",
-        function ($rootScope, AuthService, ngProgress) {
+        "$rootScope", "FutureStateService", "AuthService", "ngProgress",
+        function ($rootScope, FutureStateService, AuthService, ngProgress) {
             $rootScope.$on("$stateChangeStart", function (event, next) {
                 var authorizedRoles = next.data.authorizedRoles;
 
@@ -13,7 +13,7 @@
 
                 if (!AuthService.isAuthorized(authorizedRoles)) {
 
-                    event.preventDefault();
+                    FutureStateService.goto("login");
 
                     if (AuthService.isAuthenticated()) {
                         // user is not allowed

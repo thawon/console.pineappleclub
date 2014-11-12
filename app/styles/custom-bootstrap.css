@@ -6169,6 +6169,9 @@ button.close {
 .list-no-padding-left {
   padding-left: 0px;
 }
+#hd_user_details_div {
+  color: #808080;
+}
 #ft_div {
   padding-right: 20px;
   border-top: 1px solid #f1f1f1;

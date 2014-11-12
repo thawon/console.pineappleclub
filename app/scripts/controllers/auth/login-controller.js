@@ -1,11 +1,11 @@
 ﻿define(
-    ["app", "constants/auth-events"],
-    function (app, AUTH_EVENTS) {
+    ["underscore", "app", "constants/auth-events", "services/future-state-service"],
+    function (_, app, AUTH_EVENTS) {
         "use strict";
 
         app.controller("LoginController",
-            ["$scope", "$rootScope", "$cookieStore", "AuthService",
-            function ($scope, $rootScope, $cookieStore, AuthService) {
+            ["$scope", "$rootScope", "$cookieStore", "FutureStateService", "AuthService",
+            function ($scope, $rootScope, $cookieStore, FutureStateService, AuthService) {
                 $scope.credentials = {
                     email: "",
                     password: ""
@@ -17,9 +17,12 @@
                     })
                     .then(function (res) {
                         var user = AuthService.getCurrentUser();
+
                         $scope.setCurrentUser(user);
 
                         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+
+                        FutureStateService.goto("home");
                     });
                 }
             }

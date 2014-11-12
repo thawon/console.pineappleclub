@@ -3,20 +3,20 @@
     function (USER_ROLES) {
         return [
             {
-                stateName: "Home",
+                stateName: "home",
                 urlPrefix: "/",
                 templateUrl: "views/home.html",
                 type: "requireCtrl",
                 controllerPath: "controllers/home-controller",
                 controllerName: "HomeController",
                 data: {
-                    authorizedRoles: ["*"]
+                    authorizedRoles: [USER_ROLES.admin, USER_ROLES.parent]
                 }
             },
             {
-                stateName: "Login",
+                stateName: "login",
                 urlPrefix: "/login",
-                templateUrl: "views/login.html",
+                templateUrl: "views/auth/login.html",
                 type: "requireCtrl",
                 controllerPath: "controllers/auth/login-controller",
                 controllerName: "LoginController",
@@ -25,7 +25,16 @@
                 }
             },
             {
-                stateName: "Profile",
+                stateName: "signout",
+                urlPrefix: "/signout",
+                templateUrl: "views/auth/signout.html",
+                type: "requireCtrl",
+                data: {
+                    authorizedRoles: [USER_ROLES.admin, USER_ROLES.parent]
+                }
+            },
+            {
+                stateName: "profile",
                 urlPrefix: "/profile",
                 templateUrl: "views/profile.html",
                 type: "requireCtrl",
@@ -34,7 +43,7 @@
                 }
             },
             {
-                stateName: "Signup",
+                stateName: "signup",
                 urlPrefix: "/signup",
                 templateUrl: "views/signup/signup.html",
                 type: "requireCtrl",
