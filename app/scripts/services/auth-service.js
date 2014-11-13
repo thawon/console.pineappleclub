@@ -7,7 +7,7 @@
                 var $http = $injector.get("$http"),
                     authService = {};
 
-                authService.login = function (credentials, callback) {
+                authService.login = function (credentials, whenError) {
                     return $http.post("/login", credentials).
                         success(function (data, status, headers, config) {
                             if (data.success) {
@@ -20,20 +20,22 @@
                             return data;
                         }).
                         error(function (data, status, headers, config) {
-                            callback();
+                            whenError();
                         });
                 };
 
-                authService.logout = function () {
-                    return $http.post("/logout").then(function (res) {
-                        var data = res.data;
+                authService.logout = function (whenError) {
+                    return $http.post("/logout").
+                        success(function (data, status, headers, config) {
+                            if (data.success) {
+                                $cookieStore.remove("user");
+                            }
 
-                        if (data.success) {
-                            $cookieStore.remove("user");
-                        }
-
-                        return data;
-                    });
+                            return data;
+                        }).
+                        error(function (data, status, headers, config) {
+                            whenError();
+                        });
                 };
 
                 authService.isAuthenticated = function () {
