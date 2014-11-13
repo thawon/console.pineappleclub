@@ -21,7 +21,7 @@
                 controllerPath: "controllers/auth/login-controller",
                 controllerName: "LoginController",
                 data: {
-                    authorizedRoles: ["*"]
+                    authorizedRoles: [USER_ROLES.all]
                 }
             },
             {
@@ -30,7 +30,7 @@
                 templateUrl: "views/auth/signout.html",
                 type: "requireCtrl",
                 data: {
-                    authorizedRoles: ["*"]
+                    authorizedRoles: [USER_ROLES.all]
                 }
             },
             {
@@ -50,7 +50,7 @@
                 controllerPath: "controllers/signup/signup-controller",
                 controllerName: "SignupController",
                 data: {
-                    authorizedRoles: ["*"]
+                    authorizedRoles: [USER_ROLES.all]
                 }
             }
         ];

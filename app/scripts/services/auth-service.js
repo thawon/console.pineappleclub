@@ -1,7 +1,8 @@
 ﻿define(
     ["app", "angular"],
     function (app, angular) {
-        app.factory("AuthService", ["$injector", "$cookieStore",
+        app.factory("AuthService", 
+            ["$injector", "$cookieStore",
             function ($injector, $cookieStore) {
                 var $http = $injector.get("$http"),
                     authService = {};

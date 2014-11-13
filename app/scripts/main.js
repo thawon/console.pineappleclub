@@ -8,7 +8,7 @@ require.config({
         angularAMD: "vendors/angularAMD",
         uiRouter: "vendors/angular-ui-router.min",
         uiRouterExtras: "vendors/ct-ui-router-extras.min",
-        jquery: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
+        jquery: "vendors/jquery",
         underscore: "vendors/underscore-min",
         bootstrap: "vendors/bootstrap.min",
         async: "vendors/async",

@@ -10,50 +10,57 @@ requirejs.config({
     paths: {
         angular: "app/scripts/vendors/angular.min",
         angularMocks: "app/scripts/vendors/angular-mocks",
-        ngResource: "app/scripts/vendors/angular-resource.min",
+        ngResource: "app/scripts/vendors/angular-resource.min",        
+        ngCookies: "app/scripts/vendors/angular-cookies.min",
         ngProgress: "app/scripts/vendors/ngProgress.min",
+        angularAMD: "app/scripts/vendors/angularAMD",
+        uiRouter: "app/scripts/vendors/angular-ui-router.min",
+        uiRouterExtras: "app/scripts/vendors/ct-ui-router-extras.min",
         underscore: "app/scripts/vendors/underscore-min",
         jquery: "app/scripts/vendors/jquery",
         domReady: "app/scripts/vendors/domReady",
         app: "app/scripts/app",
         controllers: "app/scripts/controllers",
 
-        /* infrastructures */
-        infrastructures: "app/scripts/infrastructures",
-        controllerFactory: "app/scripts/infrastructures/controller-factory",
-        constants: "app/scripts/infrastructures/constants",
-        utility: "app/scripts/infrastructures/utility"
+        services: "app/scripts/services",
+        sharedLib: "shared-lib",
+        constants: "shared-lib/constants",
+
+        "future-states": "app/scripts/future-states"
     },
 
     shim: {
-        ngResource: {
-            deps: ["angular"],
+        angular: {
+            deps: ["jquery"],
             exports: "angular"
-        },
-        ngProgress: {
-            deps: ["angular"]
         },
         angularMocks:
         {
             deps: ["angular"]
         },
-        angular: {
-            deps: ["jquery"],
-            exports: "angular"
+        ngResource: {
+            deps: ["angular"]
+        },
+        ngCookies: {
+            deps: ["angular"]
+        },
+        ngProgress: {
+            deps: ["angular"]
+        },
+        angularAMD: {
+            deps: ["angular"]
+        },
+        uiRouter: {
+            deps: ["angular"]
+        },
+        uiRouterExtras: {
+            deps: ["angular"]
+        },
+        bootstrap: {
+            deps: ["jquery"]
         },
         underscore: {
             exports: "_"
-        }
-    },
-
-    map: {
-        app: {
-            route: "routeMock",
-            dependencyResolver: "dependencyResolverMock"
-        },
-        controllers: {
-            "services/device-service": "DeviceServiceMock",
-            "services/export-service": "ExportServiceMock"
         }
     },
 

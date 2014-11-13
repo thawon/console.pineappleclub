@@ -1,13 +1,13 @@
 ﻿define(
-    ["app", "constants/auth-events", "services/future-state-service"],
-    function (app, AUTH_EVENTS) {
+    ["app", "constants/auth-events", "constants/user-roles", "services/future-state-service"],
+    function (app, AUTH_EVENTS, USER_ROLES) {
         app.run([
         "$rootScope", "FutureStateService", "AuthService", "ngProgress",
         function ($rootScope, FutureStateService, AuthService, ngProgress) {
             $rootScope.$on("$stateChangeStart", function (event, next) {
                 var authorizedRoles = next.data.authorizedRoles;
 
-                if (authorizedRoles[0] === "*") {
+                if (authorizedRoles[0] === USER_ROLES.all) {
                     return;
                 }
 

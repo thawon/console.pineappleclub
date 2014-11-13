@@ -1,14 +1,14 @@
 ﻿define(
-    ["underscore", "app", "constants/auth-events", "services/future-state-service"],
-    function (_, app, AUTH_EVENTS) {
+    ["underscore", "app", "constants/auth-events", "constants/string", "services/future-state-service"],
+    function (_, app, AUTH_EVENTS, STRING) {
         "use strict";
 
         app.controller("LoginController",
             ["$scope", "$rootScope", "$cookieStore", "FutureStateService", "AuthService",
             function ($scope, $rootScope, $cookieStore, FutureStateService, AuthService) {
                 $scope.credentials = {
-                    email: "",
-                    password: ""
+                    email: STRING.empty,
+                    password: STRING.empty
                 };
 
                 $scope.login = function (credentials) {
@@ -22,8 +22,17 @@
 
                         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 
-                        FutureStateService.goto("home");
+                        goHome();
                     });
+                }
+
+                function goHome() {
+                    FutureStateService.goto("home");
+                }
+
+                if (AuthService.isAuthenticated()) {
+                    // use has signed in, redirect to home page
+                    goHome();
                 }
             }
         ]);
