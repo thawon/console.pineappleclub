@@ -18,7 +18,7 @@
                 scope.setCurrentUser = function (user) { }
 
                 FutureStateServiceMock = {
-                    goto: function (stateName) { }
+                    changeState: function (stateName) { }
                 };
 
                 AuthServiceMock = {
@@ -29,7 +29,7 @@
 
                 spyOn(scope, "setCurrentUser");
                 spyOn(rootScope, "$broadcast");
-                spyOn(FutureStateServiceMock, "goto");
+                spyOn(FutureStateServiceMock, "changeState");
 
                 createController = function () {
                     return $controller("LoginController", {
@@ -67,7 +67,7 @@
                 expect(scope.setCurrentUser).toHaveBeenCalledWith(user);
                 expect(rootScope.$broadcast).toHaveBeenCalledWith(AUTH_EVENTS.loginSuccess);
 
-                expect(FutureStateServiceMock.goto).toHaveBeenCalledWith("home");
+                expect(FutureStateServiceMock.changeState).toHaveBeenCalledWith("home");
             });
 
             it("current user is unable to login",
@@ -97,7 +97,7 @@
 
                 createController();
 
-                expect(FutureStateServiceMock.goto).toHaveBeenCalled();
+                expect(FutureStateServiceMock.changeState).toHaveBeenCalled();
             });
 
             it("user is not authenticated",
@@ -108,7 +108,7 @@
 
                 createController();
 
-                expect(FutureStateServiceMock.goto).not.toHaveBeenCalled();
+                expect(FutureStateServiceMock.changeState).not.toHaveBeenCalled();
             });
         });
     });

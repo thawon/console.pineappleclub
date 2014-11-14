@@ -15,7 +15,7 @@
 
                         $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
 
-                        FutureStateService.goto("signout");
+                        FutureStateService.changeState("signout");
                     });
                 }
             }

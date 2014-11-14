@@ -2,17 +2,15 @@
     ["app", "angular"],
     function (app, angular) {
         app.factory("AuthService", 
-            ["$injector", "$cookieStore",
-            function ($injector, $cookieStore) {
-                var $http = $injector.get("$http"),
-                    authService = {};
+            ["$cookieStore", "$http",
+            function ($cookieStore, $http) {
+                var authService = {};
 
                 authService.login = function (credentials, whenError) {
                     return $http.post("/login", credentials).
                         success(function (data, status, headers, config) {
                             if (data.success) {
                                 var user = data.user.local;
-                                user.userRole = "admin";
 
                                 $cookieStore.put("user", user);
                             }

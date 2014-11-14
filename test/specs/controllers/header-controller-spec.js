@@ -17,7 +17,7 @@
                 scope.setCurrentUser = function (user) { }
 
                 FutureStateServiceMock = {
-                    goto: function (stateName) { }
+                    changeState: function (stateName) { }
                 };
 
                 AuthServiceMock = {
@@ -26,7 +26,7 @@
 
                 spyOn(scope, "setCurrentUser");
                 spyOn(rootScope, "$broadcast");
-                spyOn(FutureStateServiceMock, "goto");
+                spyOn(FutureStateServiceMock, "changeState");
 
                 ctrl = $controller("HeaderController", {
                     $scope: scope,
@@ -54,7 +54,7 @@
                 expect(scope.setCurrentUser).toHaveBeenCalledWith(null);
                 expect(rootScope.$broadcast).toHaveBeenCalledWith(AUTH_EVENTS.logoutSuccess);
 
-                expect(FutureStateServiceMock.goto).toHaveBeenCalledWith("signout");
+                expect(FutureStateServiceMock.changeState).toHaveBeenCalledWith("signout");
             });
 
             it("current user is unable to logout",

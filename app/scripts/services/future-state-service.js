@@ -5,7 +5,7 @@
             function ($location) {
                 var FutureStateService = {};
 
-                FutureStateService.goto = function (stateName) {
+                FutureStateService.changeState = function (stateName) {
                     var target = _.first(_.where(futureStates, { stateName: stateName }));
 
                     $location.path(target.urlPrefix)

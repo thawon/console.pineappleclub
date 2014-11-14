@@ -27,7 +27,7 @@
                 }
 
                 function goHome() {
-                    FutureStateService.goto("home");
+                    FutureStateService.changeState("home");
                 }
 
                 if (AuthService.isAuthenticated()) {

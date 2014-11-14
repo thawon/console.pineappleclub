@@ -13,7 +13,7 @@
 
                 if (!AuthService.isAuthorized(authorizedRoles)) {
 
-                    FutureStateService.goto("login");
+                    FutureStateService.changeState("login");
 
                     if (AuthService.isAuthenticated()) {
                         // user is not allowed
