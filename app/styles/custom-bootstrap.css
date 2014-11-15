@@ -6242,6 +6242,9 @@ button.close {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+#lg_error_message {
+  font-size: 12px;
+}
 .side-bar-show {
   display: block;
 }

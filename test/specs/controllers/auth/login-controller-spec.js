@@ -6,13 +6,13 @@
 
             beforeEach(module("console.pineappleclub"));
 
-            var createController, scope, rootScope, cookieStore, $q, FutureStateServiceMock, AuthServiceMock;
+            var createController, scope, rootScope, cookieStore, $rootScope, $q, FutureStateServiceMock, AuthServiceMock;
 
-            beforeEach(inject(function ($controller, $rootScope, _$cookieStore_, _$q_) {
+            beforeEach(inject(function ($controller, _$rootScope_, _$cookieStore_, _$q_) {
                 $q = _$q_;
+                $rootScope = _$rootScope_;
 
                 scope = $rootScope.$new();
-                rootScope = $rootScope.$new();
                 cookieStore = _$cookieStore_;
 
                 scope.setCurrentUser = function (user) { }
@@ -22,13 +22,13 @@
                 };
 
                 AuthServiceMock = {
-                    login: function (credentials, whenError) { },
+                    login: function (credentials) { },
                     getCurrentUser: function () { },
                     isAuthenticated: function () { }
                 };
 
                 spyOn(scope, "setCurrentUser");
-                spyOn(rootScope, "$broadcast");
+
                 spyOn(FutureStateServiceMock, "changeState");
 
                 createController = function () {
@@ -45,8 +45,11 @@
             it("user logins successfully",
             function () {
                 var user = {};
+                rootScope = $rootScope.$new();
 
-                spyOn(AuthServiceMock, "login").andCallFake(function (whenError) {
+                spyOn(rootScope, "$broadcast");
+
+                spyOn(AuthServiceMock, "login").andCallFake(function () {
                     var deferred = $q.defer();
 
                     deferred.resolve({ success: true });
@@ -72,21 +75,21 @@
 
             it("current user is unable to login",
             function () {
-                spyOn(AuthServiceMock, "login").andCallFake(function (credentials, whenError) {
+                spyOn(AuthServiceMock, "login").andCallFake(function (credentials) {
                     var deferred = $q.defer();
 
-                    deferred.resolve({ success: false });
-
-                    whenError();
+                    rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
 
                     return deferred.promise;
                 });
+
+                rootScope = $rootScope;
 
                 createController();
 
                 scope.login();
 
-                expect(rootScope.$broadcast).toHaveBeenCalledWith(AUTH_EVENTS.loginFailed);
+                expect(scope.errorMessage).not.toBe(null);
             });
 
             it("user is authenticated",
@@ -98,7 +101,7 @@
                 createController();
 
                 expect(FutureStateServiceMock.changeState).toHaveBeenCalled();
-            });
+            });               
 
             it("user is not authenticated",
             function () {
@@ -109,6 +112,6 @@
                 createController();
 
                 expect(FutureStateServiceMock.changeState).not.toHaveBeenCalled();
-            });
+            });                 
         });
     });

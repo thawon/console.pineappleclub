@@ -11,7 +11,7 @@
                             403: AUTH_EVENTS.notAuthorized,
                             419: AUTH_EVENTS.sessionTimeout,
                             440: AUTH_EVENTS.sessionTimeout
-                        }[response.status], res);
+                        }[res.status], res);
                         return $q.reject(res);
                     }
                 };

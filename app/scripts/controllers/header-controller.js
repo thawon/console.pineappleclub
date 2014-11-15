@@ -7,9 +7,7 @@
             ["$scope", "$rootScope", "FutureStateService", "AuthService", 
             function ($scope, $rootScope, FutureStateService, AuthService) {
                 $scope.logout = function () {
-                    AuthService.logout(function () {
-                        $rootScope.$broadcast(AUTH_EVENTS.logoutFailed);
-                    })
+                    AuthService.logout()
                     .then(function (res) {
                         $scope.setCurrentUser(null);
 

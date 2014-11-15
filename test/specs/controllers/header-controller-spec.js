@@ -21,7 +21,7 @@
                 };
 
                 AuthServiceMock = {
-                    logout: function (whenError) { }
+                    logout: function () { }
                 };
 
                 spyOn(scope, "setCurrentUser");
@@ -38,7 +38,7 @@
 
             it("current user is cleared after a successful logout",
             function () {
-                spyOn(AuthServiceMock, "logout").andCallFake(function (whenError) {
+                spyOn(AuthServiceMock, "logout").andCallFake(function () {
                     var deferred = $q.defer();
 
                     deferred.resolve({ success: true });
@@ -55,23 +55,6 @@
                 expect(rootScope.$broadcast).toHaveBeenCalledWith(AUTH_EVENTS.logoutSuccess);
 
                 expect(FutureStateServiceMock.changeState).toHaveBeenCalledWith("signout");
-            });
-
-            it("current user is unable to logout",
-            function () {
-                spyOn(AuthServiceMock, "logout").andCallFake(function (whenError) {
-                    var deferred = $q.defer();
-
-                    deferred.resolve({ success: false });
-
-                    whenError();
-
-                    return deferred.promise;
-                });
-
-                scope.logout();
-
-                expect(rootScope.$broadcast).toHaveBeenCalledWith(AUTH_EVENTS.logoutFailed);
             });
         });
     });

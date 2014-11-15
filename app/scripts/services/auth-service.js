@@ -1,14 +1,16 @@
 ﻿define(
     ["app", "angular"],
     function (app, angular) {
-        app.factory("AuthService", 
+        app.factory("AuthService",
             ["$cookieStore", "$http",
             function ($cookieStore, $http) {
                 var authService = {};
 
-                authService.login = function (credentials, whenError) {
-                    return $http.post("/login", credentials).
-                        success(function (data, status, headers, config) {
+                authService.login = function (credentials) {
+                    return $http.post("/login", credentials)
+                        .then(function (res) {
+                            var data = res.data;
+
                             if (data.success) {
                                 var user = data.user.local;
 
@@ -16,23 +18,19 @@
                             }
 
                             return data;
-                        }).
-                        error(function (data, status, headers, config) {
-                            whenError();
                         });
                 };
 
-                authService.logout = function (whenError) {
-                    return $http.post("/logout").
-                        success(function (data, status, headers, config) {
+                authService.logout = function () {
+                    return $http.post("/logout")
+                        .then(function (res) {
+                            var data = res.data;
+
                             if (data.success) {
                                 $cookieStore.remove("user");
                             }
 
                             return data;
-                        }).
-                        error(function (data, status, headers, config) {
-                            whenError();
                         });
                 };
 

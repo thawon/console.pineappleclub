@@ -11,10 +11,10 @@
                     password: STRING.empty
                 };
 
+                $scope.errorMessage = null;
+
                 $scope.login = function (credentials) {
-                    AuthService.login(credentials, function () {
-                        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-                    })
+                    AuthService.login(credentials)
                     .then(function (res) {
                         var user = AuthService.getCurrentUser();
 
@@ -25,6 +25,10 @@
                         goHome();
                     });
                 }
+
+                $scope.$on(AUTH_EVENTS.notAuthenticated, function () {
+                    $scope.errorMessage = "The email or password you entered is incorrect.";
+                });
 
                 function goHome() {
                     FutureStateService.changeState("home");
