@@ -10,7 +10,7 @@
             passport = require("passport"),
             MongoStore = require("connect-mongo")(session),
             app = express();
-            
+
         // configuration ===============================================================
         mongoose.connect(config.db.url); // connect to our database
 

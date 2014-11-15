@@ -1,5 +1,49 @@
 module.exports = function (grunt) {
     grunt.initConfig({
+        express: {
+            options: {
+                // Override defaults here
+            },
+            server: {
+                options: {
+                    script: "server.js",
+                    node_env: undefined,
+                    debug: true
+                }
+            },
+            test: {
+                options: {
+                    script: "server.js",
+                    node_env: undefined
+                }
+            }
+        },
+        watch: {
+            frontend: {
+                options: {
+                    livereload: true
+                },
+                files: "./app/lesses/*.less",
+                tasks: ["less"]
+            },
+            server: {
+                files: ["./server/**/*"],
+                tasks: ["express:server"],
+                options: {
+                    //Without this option specified express won't be reloaded
+                    nospawn: true,
+                    atBegin: true
+                }
+            }
+        },
+        "node-inspector": {
+            dev: {
+                options: {
+                    "web-port": 8082,
+                    "no-preload": true
+                }
+            }
+        },
         less: {
             development: {
                 options: {
@@ -11,9 +55,30 @@ module.exports = function (grunt) {
                 }
             }
         },
-        watch: {
-            files: "./app/lesses/*.less",
-            tasks: ["less"]
+        karma: {
+            unit: {
+                configFile: "test/karma.conf.js",
+                browsers: ["PhantomJS"],
+                singleRun: true
+            }
+        },
+        protractor_webdriver: {
+            options: {
+                // Task-specific options go here.
+            },
+            your_target: {
+                options: {
+                    command: "webdriver-manager start",
+                    keepAlive: true
+                }
+            }
+        },
+        protractor: {
+            options: {
+                configFile: "test/protractor.conf.js",
+                keepAlive: true
+            },
+            run: {}
         },
         requirejs: {
             production: {
@@ -34,16 +99,65 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        parallel: {
+            dev: {
+                options: {
+                    stream: true
+                },
+                tasks: [{
+                    grunt: true,
+                    args: ["watch:frontend"]
+                }, {
+                    grunt: true,
+                    args: ["watch:server"]
+                }, {
+                    grunt: true,
+                    args: ["node-inspector:dev"]
+                }]
+            },
+            test: {
+                option: {
+                    stream: true
+                },
+                tasks: [{
+                    grunt: true,
+                    args: ["karma:unit"]
+                }, {
+                    grunt: true,
+                    // e2e test always run on minified file
+                    args: ["requirejs:production", "express:test", "protractor_webdriver", "protractor"]
+                }]
+            }
         }
     });
 
     grunt.loadNpmTasks("grunt-contrib-less");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-requirejs");
+    grunt.loadNpmTasks("grunt-express-server");
+    grunt.loadNpmTasks("grunt-env");
+    grunt.loadNpmTasks("grunt-node-inspector");
+    grunt.loadNpmTasks("grunt-karma");
+    grunt.loadNpmTasks("grunt-protractor-webdriver");
+    grunt.loadNpmTasks("grunt-protractor-runner");
+    grunt.loadNpmTasks("grunt-parallel");
 
-    //grunt.registerTask("default", ["watch"]);
+    // test
+    grunt.registerTask("test", "run unit tests and end to end tests", 
+    ["parallel:test"]);
 
-    grunt.registerTask("development", ["watch"]);
+    grunt.registerTask("specs", "run unit tests", 
+    ["karma:unit"]);
+    
+    grunt.registerTask("e2e", "run end to end tests", 
+    ["express:test", "protractor_webdriver", "protractor"]);
 
-    grunt.registerTask("production", ["requirejs:production"]);
+    // development
+    grunt.registerTask("development", "launch webserver and watch task", 
+    ["parallel:dev"]);
+    
+    // production
+    grunt.registerTask("production", "minifies js files",
+    ["requirejs:production"]);
 };

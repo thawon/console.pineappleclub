@@ -6,6 +6,8 @@
 
         config.basePath = path.normalize(dirname + "/../..");
 
+        console.log("env: " + process.env.NODE_ENV);
+
         config.express = {
             port: process.env.port || 3000,
             ip: "127.0.0.1",
@@ -28,10 +30,10 @@
 
         config.db = {
             database: "console",
-            url: (process.env.PORT) 
-                    // production connection string
+            url: (process.env.PORT)
+            // production connection string
                     ? "mongodb://console:zzKBugqlYUaCJRsRP9b.KzkxAxWuQJ_DyCClmRKoUmI-@ds041167.mongolab.com:41167/console"
-                    // development connection string
+            // development connection string
                     : "mongodb://localhost:27017/console"
         };
 

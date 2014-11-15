@@ -12,7 +12,7 @@ exports.config = {
 
     // An array of test files can be sent through the specs parameter for Protractor to execute. 
     // The path of the test files must be relative to the config file.
-    specs: ["e2e/*Spec.js"],
+    specs: ["e2e/*spec.js"],
 
     singleRun: false
 }
