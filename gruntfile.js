@@ -4,10 +4,10 @@ module.exports = function (grunt) {
             options: {
                 // Override defaults here
             },
-            server: {
+            development: {
                 options: {
                     script: "server.js",
-                    node_env: undefined,
+                    node_env: "development",
                     debug: true
                 }
             },
@@ -28,7 +28,7 @@ module.exports = function (grunt) {
             },
             server: {
                 files: ["./server/**/*"],
-                tasks: ["express:server"],
+                tasks: ["express:development"],
                 options: {
                     //Without this option specified express won't be reloaded
                     nospawn: true,
@@ -144,13 +144,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-parallel");
 
     // test
-    grunt.registerTask("test", "run unit tests and end to end tests", 
+    grunt.registerTask("test", "run specs and scenarios", 
     ["parallel:test"]);
 
-    grunt.registerTask("specs", "run unit tests", 
+    grunt.registerTask("specs", "run specs", 
     ["karma:unit"]);
-    
-    grunt.registerTask("e2e", "run end to end tests", 
+
+    grunt.registerTask("scenarios", "run scenarios", 
     ["express:test", "protractor_webdriver", "protractor"]);
 
     // development

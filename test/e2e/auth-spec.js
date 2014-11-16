@@ -5,12 +5,22 @@ describe("authentication", function () {
 
     beforeEach(function () {
         ptor = protractor.getInstance();
-        ptor.driver.get("http://127.0.0.1:3000");
     });
 
-    it("should load the home page", function () {
+    it("user logins successfully", function () {
+        ptor.get("http://127.0.0.1:3000/login");
         ptor.sleep(2000);
-        expect(browser.getTitle()).toEqual("Pineapple Club Console");
+
+        var backEndMocks = require("./backend-mock");
+
+        ptor.addMockModule('httpBackEndMock', backEndMocks.build([backEndMocks.w7Restaurants]));
+
+        element(by.id("email")).sendKeys("a@comxxx");
+        element(by.id("password")).sendKeys("b");
+        element(by.id("lg_login_button")).click();
+
+        ptor.sleep(10000);
     });
 
 });
+

@@ -2,7 +2,7 @@
     <div ng-switch on="currentUser.userRole" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <span ng-switch-when="admin">Admin Console</span>
         <span ng-switch-when="parent">Parent Console</span>
-
+        <span ng-bind="currentUser.email"></span>
         <button id="hd_sign_out_button" type="button" class="btn btn-sm btn-default" ng-click="logout()">
                 Sign out</button>
     </div>
