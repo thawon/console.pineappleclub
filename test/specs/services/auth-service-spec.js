@@ -4,15 +4,15 @@
 
         describe("Unit: AuthService", function () {
 
-            var service, cookieStore, httpBackend;
+            var service, $cookieStore, $httpBackend;
 
             beforeEach(module("ngCookies", "console.pineappleclub"));
 
-            beforeEach(inject(function (AuthService, $cookieStore, $httpBackend) {
+            beforeEach(inject(function (AuthService, _$cookieStore_, _$httpBackend_) {
                 service = AuthService;
 
-                cookieStore = $cookieStore;
-                httpBackend = $httpBackend;
+                $cookieStore = _$cookieStore_;
+                $httpBackend = _$httpBackend_;
             }));
 
             it("user logins",
@@ -28,7 +28,7 @@
                     },
                     url = "/login";
 
-                httpBackend.when("POST", url)
+                $httpBackend.when("POST", url)
                     .respond({
                         success: true,
                         user: {
@@ -36,38 +36,38 @@
                         }
                     });
 
-                spyOn(cookieStore, "put");
+                spyOn($cookieStore, "put");
 
                 service.login(credentials, function () { });
 
-                httpBackend.flush();
+                $httpBackend.flush();
 
-                httpBackend.expectPOST(url);
-                expect(cookieStore.put).toHaveBeenCalledWith("user", user);
+                $httpBackend.expectPOST(url);
+                expect($cookieStore.put).toHaveBeenCalledWith("user", user);
             });
 
             it("user logout",
             function () {
                 var url = "/logout";
 
-                httpBackend.when("POST", url)
+                $httpBackend.when("POST", url)
                     .respond({
                         success: true
                     });
 
-                spyOn(cookieStore, "remove");
+                spyOn($cookieStore, "remove");
 
                 service.logout(function () { });
 
-                httpBackend.flush();
+                $httpBackend.flush();
 
-                httpBackend.expectPOST(url);
-                expect(cookieStore.remove).toHaveBeenCalledWith("user");
+                $httpBackend.expectPOST(url);
+                expect($cookieStore.remove).toHaveBeenCalledWith("user");
             });
 
             it("user is authenticated, checking authentication",
             function () {
-                spyOn(cookieStore, "get").andCallFake(function () {
+                spyOn($cookieStore, "get").andCallFake(function () {
                     return {
                         email: "tester@unittest.com.au",
                         password: "password"
@@ -79,7 +79,7 @@
 
             it("user is not authenticated, checking authentication",
             function () {
-                spyOn(cookieStore, "get").andCallFake(function () {
+                spyOn($cookieStore, "get").andCallFake(function () {
                     return null;
                 });
 
@@ -88,18 +88,18 @@
 
             it("get current authenticated user",
             function () {
-                spyOn(cookieStore, "get");
+                spyOn($cookieStore, "get");
 
                 service.getCurrentUser();
 
-                expect(cookieStore.get).toHaveBeenCalledWith("user");
+                expect($cookieStore.get).toHaveBeenCalledWith("user");
             });
 
             it("admin user accesses url which requires admin permission",
             function () {
                 var authorizedRoles = [USER_ROLES.admin];
 
-                spyOn(cookieStore, "get").andCallFake(function () {
+                spyOn($cookieStore, "get").andCallFake(function () {
                     return {
                         email: "tester@unittest.com.au",
                         password: "password",
@@ -114,7 +114,7 @@
             function () {
                 var authorizedRoles = [USER_ROLES.admin];
 
-                spyOn(cookieStore, "get").andCallFake(function () {
+                spyOn($cookieStore, "get").andCallFake(function () {
                     return {
                         email: "tester@unittest.com.au",
                         password: "password",

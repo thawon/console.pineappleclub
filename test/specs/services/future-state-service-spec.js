@@ -4,7 +4,7 @@
 
         describe("Unit: FutureStateService", function () {
 
-            var service, location;
+            var service, $location;
 
             function findFutureState(stateName) {
                 var length = futureStates.length;
@@ -18,21 +18,21 @@
 
             beforeEach(module("console.pineappleclub"));
 
-            beforeEach(inject(function (FutureStateService, $location) {
+            beforeEach(inject(function (FutureStateService, _$location_) {
                 service = FutureStateService;
 
-                location = $location;
+                $location = _$location_;
             }));
 
             it("change state",
             function () {
                 var homeState = findFutureState("home");
 
-                spyOn(location, "path");
+                spyOn($location, "path");
 
                 service.changeState(homeState.stateName);
 
-                expect(location.path).toHaveBeenCalledWith(homeState.urlPrefix);
+                expect($location.path).toHaveBeenCalledWith(homeState.urlPrefix);
             });
 
         });

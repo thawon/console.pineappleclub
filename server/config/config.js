@@ -30,11 +30,11 @@
 
         config.db = {
             database: "console",
-            url: (process.env.PORT)
+            url: (!process.env.PORT)
             // production connection string
-                    ? "mongodb://console:zzKBugqlYUaCJRsRP9b.KzkxAxWuQJ_DyCClmRKoUmI-@ds041167.mongolab.com:41167/console"
+                    ? "mongodb://localhost:27017/console"
             // development connection string
-                    : "mongodb://localhost:27017/console"
+                    : "mongodb://console:zzKBugqlYUaCJRsRP9b.KzkxAxWuQJ_DyCClmRKoUmI-@ds041167.mongolab.com:41167/console"
         };
 
         return config;

@@ -1,6 +1,6 @@
 define(
-    ["angular", "angularAMD", "future-states", "ngResource", "ngCookies", "ngProgress", "uiRouterExtras", "uiRouter"],
-    function (angular, angularAMD, futureStates) {
+    ["angular", "future-states", "ngResource", "ngCookies", "ngProgress", "uiRouterExtras", "uiRouter"],
+    function (angular, futureStates) {
         "use strict";
 
         var app = angular.module("console.pineappleclub", ["ngResource", "ngProgress", "ngCookies", "ct.ui.router.extras"]);

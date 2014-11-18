@@ -7,7 +7,7 @@ module.exports = function (grunt) {
             development: {
                 options: {
                     script: "server.js",
-                    node_env: "development",
+                    node_env: undefined,
                     debug: true
                 }
             },
@@ -150,11 +150,11 @@ module.exports = function (grunt) {
     grunt.registerTask("specs", "run specs", 
     ["karma:unit"]);
 
-    grunt.registerTask("scenarios", "run scenarios", 
-    ["express:test", "protractor_webdriver", "protractor"]);
+//    grunt.registerTask("scenarios", "run scenarios", 
+//    ["express:test", "protractor_webdriver", "protractor"]);
 
     // development
-    grunt.registerTask("development", "launch webserver and watch task", 
+    grunt.registerTask("dev", "launch webserver and watch task", 
     ["parallel:dev"]);
     
     // production

@@ -2,7 +2,7 @@ exports.config = {
     // This allows you provide a URL to the Selenium Server that Protractor will use to execute tests. 
     // In this case Selenium Server must be previously started to be able to run tests on Protractor.
     seleniumAddress: "http://localhost:4444/wd/hub",
-    
+
     capabilities: {
         "browserName": "chrome"
     },
