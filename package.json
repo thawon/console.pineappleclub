@@ -32,16 +32,12 @@
 		"grunt-contrib-less": "~0.11.0",
 		"grunt-contrib-watch": "~0.6.1",
 		"grunt-contrib-requirejs": "~0.4.4",
-		"selenium-webdriver" : "~2.43.5",
 		"grunt-express-server": "~0.4.19",
 		"grunt-parallel": "~0.3.1",
 		"load-grunt-tasks": "~1.0.0",
 		"grunt-env": "~0.4.2",
 		"grunt-node-inspector": "~0.1.5",
-		"grunt-karma":"~0.9.0",
-		"grunt-protractor-webdriver": "~0.1.9",
-		"grunt-protractor-runner": "~1.1.4",
-		"protractor": "~1.4.0"
+		"grunt-karma":"~0.9.0"
 	},
 	"repository": {
 		"type": "git",
