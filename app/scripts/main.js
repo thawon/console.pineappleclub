@@ -17,11 +17,11 @@ require.config({
 
         constants: "../../shared-lib/constants"
     },
-    shim: {        
+    shim: {
         ngResource: {
             deps: ["angular"]
         },
-        ngCookies:{
+        ngCookies: {
             deps: ["angular"]
         },
         ngProgress: {
@@ -29,7 +29,7 @@ require.config({
         },
         angularAMD: {
             deps: ["angular"]
-        },        
+        },
         uiRouter: {
             deps: ["angular"]
         },

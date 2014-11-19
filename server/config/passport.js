@@ -15,16 +15,21 @@
             // used to deserialize the user
             passport.deserializeUser(function (id, done) {
                 User.findById(id, function (err, user) {
-                    done(err, user);
+
+                    user.local.lastLoggedInDateTime = new Date();
+                    user.save(function (err) {
+                        done(err, user);
+                    });
+
                 });
             });
 
             // LOCAL LOGIN ============================================================
-            passport.use("local-login", new LocalStrategy({                
+            passport.use("local-login", new LocalStrategy({
                 usernameField: "email",
                 passwordField: "password",
                 // allows us to pass back the entire request to the callback
-                passReqToCallback: true 
+                passReqToCallback: true
             },
             function (req, email, password, done) {
 
@@ -37,24 +42,31 @@
 
                     // if no user is found, return the message
                     if (!user)
-                        return done(null, false, { message: "User is not found." }); 
+                        return done(null, false, { message: "User is not found." });
 
                     // if the user is found but the password is wrong
                     if (!user.validPassword(password))
                         return done(null, false, { message: "Password is incorrect." });
 
-                    // all is well, return successful user
-                    return done(null, user);
+                    user.local.lastLoggedInDateTime = new Date();
+
+                    user.save(function (err) {
+                        if (err)
+                            throw err;
+
+                        // all is well, return successful user
+                        return done(null, user);
+                    });
                 });
 
             }));
 
             // LOCAL SIGNUP ============================================================
-            passport.use("local-signup", new LocalStrategy({                
+            passport.use("local-signup", new LocalStrategy({
                 usernameField: "email",
                 passwordField: "password",
                 // allows us to pass back the entire request to the callback
-                passReqToCallback: true 
+                passReqToCallback: true
             },
             function (req, email, password, done) {
 

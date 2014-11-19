@@ -6,16 +6,20 @@
         app.controller("ApplicationController",
             ["$scope", "AuthService", "ngProgress", "AppConfigurationService",
             function ($scope, AuthService, ngProgress, AppConfigurationService) {
-                var user = AuthService.getCurrentUser();
-
-                // setting progress bar color
-                ngProgress.color(AppConfigurationService.progress.color);
-
                 $scope.setCurrentUser = function (user) {
                     $scope.currentUser = user;
                 }
 
-                $scope.setCurrentUser(user);
+                // setting progress bar color
+                ngProgress.color(AppConfigurationService.progress.color);
+
+                // check if the user are still logged in from last session.
+                AuthService.authenticated()
+                .then(function (data) {
+                    if (data.success) {
+                        $scope.setCurrentUser(AuthService.getCurrentUser());
+                    }
+                });
             }
         ]);
     });

@@ -6,15 +6,17 @@
             function ($cookieStore, $http) {
                 var authService = {};
 
+                function setCurrentUser(user) {
+                    $cookieStore.put("user", user);
+                }
+
                 authService.login = function (credentials) {
                     return $http.post("/login", credentials)
                         .then(function (res) {
                             var data = res.data;
 
                             if (data.success) {
-                                var user = data.user.local;
-
-                                $cookieStore.put("user", user);
+                                setCurrentUser(data.user.local);
                             }
 
                             return data;
@@ -28,6 +30,22 @@
 
                             if (data.success) {
                                 $cookieStore.remove("user");
+                            }
+
+                            return data;
+                        });
+                };
+
+                authService.authenticated = function () {
+                    
+                    $cookieStore.remove("user");
+                    
+                    return $http.post("/authenticated")
+                        .then(function (res) {
+                            var data = res.data;
+
+                            if (data.success) {
+                                setCurrentUser(data.user.local);
                             }
 
                             return data;

@@ -28,13 +28,17 @@
             sharedLibPath: config.basePath + "/shared-lib"
         };
 
+        var mongoUrl = (!process.env.NODE_ENV)
+                        // development connection string
+                        ? "mongodb://localhost:27017/console"
+                        // production connection string
+                        : "mongodb://console:zzKBugqlYUaCJRsRP9b.KzkxAxWuQJ_DyCClmRKoUmI-@ds041167.mongolab.com:41167/console";
+
+        console.log("mongo url: " + mongoUrl);
+
         config.db = {
             database: "console",
-            url: (!process.env.PORT)
-            // production connection string
-                    ? "mongodb://localhost:27017/console"
-            // development connection string
-                    : "mongodb://console:zzKBugqlYUaCJRsRP9b.KzkxAxWuQJ_DyCClmRKoUmI-@ds041167.mongolab.com:41167/console"
+            url: mongoUrl
         };
 
         return config;

@@ -4,7 +4,9 @@
         <div class="container">
             <div class="row">
                 <div ng-if="currentUser" id="ft_last_sign_in_div" class="col-lg-12">
-                    <span id="ft_last_sign_in_span">Last signed in 10:00 AM, 20 Oct 2014 AEST</span>
+                    <span id="ft_last_sign_in_span">
+                        Last sign-in: {{currentUser.lastLoggedInDateTime | date:'MMMM dd yyyy, h:mm a'}}
+                    </span>
                 </div>
                 <div id="ft_div" class="col-lg-12">
                     <ul class="list-inline">

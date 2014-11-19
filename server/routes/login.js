@@ -14,6 +14,12 @@
                 return res.send({ success: true });
             })
 
+            router.post("/authenticated", function (req, res) {
+                var user = req.user;
+
+                return res.send({ success: (user) ? true : false, user: user });
+            })
+
             return router;
         }
     });

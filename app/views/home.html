@@ -1,3 +1,23 @@
-﻿<div ng-controller="HomeController">
-home
+﻿<!-- hm = "home" -->
+<div ng-controller="HomeController">
+    <div id="hm_header_div">
+        Welcome <span>{{currentUser.firstname + ' ' + currentUser.lastname}}</span>
+    </div>
+    <div id="hm_items_div" class="container">
+        <div class="col-xs-6 col-sm-3">
+            <div class="thumbnail img-responsive tile-size">
+                <img class="tile-image" src="../images/children.png">
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <div class="thumbnail img-responsive tile-size">
+                <img class="tile-image" src="../images/journal.png">
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <div class="thumbnail img-responsive tile-size">
+                <img class="tile-image" src="../images/daily.png">
+            </div>
+        </div>
+    </div>
 </div>
