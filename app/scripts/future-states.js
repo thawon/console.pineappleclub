@@ -38,8 +38,10 @@
                 urlPrefix: "/profile",
                 templateUrl: "views/profile.html",
                 type: "requireCtrl",
+                controllerPath: "controllers/profile-controller",
+                controllerName: "ProfileController",
                 data: {
-                    authorizedRoles: [USER_ROLES.admin]
+                    authorizedRoles: [USER_ROLES.admin, USER_ROLES.parent]
                 }
             },
             {

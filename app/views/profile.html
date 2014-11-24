@@ -1,3 +1,20 @@
-﻿<div>
-    profile page
+﻿<div ng-controller="ProfileController">
+    <div class="container">
+        <h2>Profile</h2>
+        <div class="col-12">
+            <div class="span4 collapse-group">
+                    <img id="toggle_personal_img" src="../images/expand.png" ng-click="showPersonalDetail()" style="margin-right:10px; padding-bottom:10px;">
+                    <h3 style="display:inline;">Personal details</h3>
+                    <div class="collapse" style="width:97%; height:100%; padding:15px; border: 1px solid #808080; border-radius: 5px;">
+                        <div style="height:100px; margin-bottom:15px;">
+                            <label for="pf_first_name_input" style="display:block; color:#808080;">First Name</label>
+                            <input id="pf_first_name_input" type="text" style="width:100%; max-width:250px;">
+                            <label for="pf_last_name_input" style="display:block; color:#808080;">Last Name</label>
+                            <input id="pf_last_name_input" type="text" style="width:100%; max-width:250px;">
+                        </div>
+                        <button class="btn btn-sm btn-primary">Save</button>
+                    </div>
+                </div>
+        </div>
+    </div>
 </div>
