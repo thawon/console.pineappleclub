@@ -4,6 +4,7 @@
     name: "main",
     include: [
         "controllers/home-controller",
+        "controllers/profile-controller",
         "controllers/auth/login-controller"
     ],
     out: "./app/scripts/optimized.js",
