@@ -4423,7 +4423,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 75%;
   font-weight: bold;
   line-height: 1;
-  color: #ffffff;
+  color: #808080;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
@@ -6306,4 +6306,25 @@ button.close {
 }
 #so_signout_message_div {
   margin-bottom: 15px;
+}
+.exp-toggle {
+  margin-right: 10px;
+  padding-bottom: 10px;
+}
+.exp-container {
+  width: 97%;
+  height: 100%;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #808080;
+  border-radius: 5px;
+}
+.input-text-default {
+  width: 100%;
+  max-width: 250px;
+  margin-bottom: 10px;
+}
+.label-block {
+  display: block;
+  color: #808080;
 }
