@@ -7,16 +7,24 @@
             ["$scope",
             function ($scope) {
 
+                $scope.change = function () {
+                    $scope.showed = false;
+                }
+
+                $scope.changex = function () {
+                    $scope.showed = true;
+                }
+
                 $scope.showed = true;
 
                 $scope.cancel = function () {
                     this.$views.$switchTo("show");
-                    this.showed = true;
+                    this.changex();
                 }
 
                 $scope.edit = function () {
                     this.$views.$switchTo("edit");
-                    this.showed = false;
+                    this.change();
                 }
 
                 $scope.savexx = function () {
