@@ -75,7 +75,9 @@ module.exports = function (grunt) {
                     uglify: {
                         except: [
                             "futureState",
-                            "$q"
+                            "$q",
+                            "$element",
+                            "$attrs"
                         ]
                     }
                 }
