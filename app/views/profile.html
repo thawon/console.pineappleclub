@@ -4,11 +4,12 @@
 
     <pcd-expandable-container data-header="Personal Details">
         <div>
-            <button ng-if="(showedPersonal === 'show')" class="btn btn-sm btn-primary" 
-                ng-click="editPersonal()">Edit</button>
+            <button ng-if="(viewManager.views.personal.mode === 'show')" class="btn btn-sm btn-primary" 
+                ng-click="edit('Personal')">Edit</button>
         </div>
 
         <pcd-views>
+            
             <pcd-view name="show" initial>
                 <table class="table-views">
                     <thead>
@@ -19,11 +20,11 @@
                     <tbody>
                         <tr>
                             <td class="label-inline">First Name:</td>
-                            <td class="label-inline" ng-bind="currentUser.firstname"></td>
+                            <td class="label-inline">{{currentUser.firstname}}</td>
                         </tr>
                         <tr>
                             <td class="label-inline">Last Name:</td>
-                            <td class="label-inline" ng-bind="currentUser.lastname"></td>
+                            <td class="label-inline">{{currentUser.lastname}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -44,7 +45,7 @@
         
     <pcd-expandable-container data-header="Login">
         <div>
-            <button ng-if="(showedLogin === 'show')" class="btn btn-sm btn-primary" 
+            <button ng-if="(viewManager.views.login.mode === 'show')" class="btn btn-sm btn-primary" 
                 ng-click="editLogin()">Edit</button>
         </div>
 

@@ -9,6 +9,32 @@
             function ($scope) {
                 var ViewCommand, personalViewCommand, loginViewCommand;
 
+                $scope.viewManager = {
+                    changeViewMode: function (viewName, mode) {
+                        $scope.views[viewName].mode = mode;
+                    },
+                    views: {
+                        personal: {
+                            mode: VIEW_MODES.show
+                        },
+                        login: {
+                            mode: VIEW_MODES.show
+                        }
+                    }
+                };
+
+                $scope.changeViewMode = function (viewName, mode) {
+                    $scope.viewManager.views[viewName].mode = mode;
+                }
+
+                $scope.showedPersonal = VIEW_MODES.show;
+                $scope.showedLogin = VIEW_MODES.show;
+
+                var edit = function (viewName) {
+                    this.$views.$switchTo(VIEW_MODES.edit);
+                    this.changeViewMode(viewName, VIEW_MODES.edit);
+                };
+
                 ViewCommand = function (viewName) {
                     return {
                         cancel: function () {
@@ -22,33 +48,22 @@
                     }
                 };
 
-                $scope.changeViewMode = function (viewName, mode) {
-                    if (viewName === "person") {
-                        $scope.showedPersonal = mode;
-                    } else if (viewName === "login") {
-                        $scope.showedLogin = mode;
-                    } else {
-                        throw new Error("unexpected view is found. " + viewName);
-                    }
-                }
+                personalViewCommand = new ViewCommand("personal");
+                //$scope.cancel = cancel; // = personalViewCommand.cancel;
+                $scope.edit = edit;
 
-                personalViewCommand = new ViewCommand("person");
-                $scope.cancelPersonal = personalViewCommand.cancel;
-                $scope.editPersonal = personalViewCommand.edit;
+                //                $scope.loginViewCommand = new ViewCommand("login");
+                //                $scope.cancelLogin = loginViewCommand.cancel;
+                //                $scope.editLogin = loginViewCommand.edit;
 
-                loginViewCommand = new ViewCommand("login");
-                $scope.cancelLogin = loginViewCommand.cancel;
-                $scope.editLogin = loginViewCommand.edit;
 
-                $scope.showedPersonal = VIEW_MODES.show;
-                $scope.showedLogin = VIEW_MODES.show;
 
                 $scope.savePersonal = function () {
                     // do save here
 
                     // change view mode
                     this.$views.$switchTo(VIEW_MODES.show);
-                    this.changeViewMode("person", VIEW_MODES.show);
+                    this.changeViewMode("personal", VIEW_MODES.show);
                 }
             }
         ]);
