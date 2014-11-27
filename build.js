@@ -11,8 +11,10 @@
     uglify: {
         except: [
                 "futureState",
-                "$q"
+                "$q",
+                "$element",
+                "$attrs"
             ]
-        //,beautify: true
+        ,beautify: true
     }
 })

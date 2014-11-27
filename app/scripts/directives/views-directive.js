@@ -6,7 +6,7 @@
         app.directive("pcdViews", [
             function () {
                 return {
-                    restrict: 'E',
+                    restrict: "E",
                     controller: function () {
                         var registeredViews = {};
 

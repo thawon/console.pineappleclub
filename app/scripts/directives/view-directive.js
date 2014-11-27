@@ -1,17 +1,23 @@
 ﻿define(
-    ["app"],
+    ["app", "directives/views-directive"],
     function (app) {
         "use strict";
 
         app.directive("pcdView", [
             function () {
                 return {
-                    restrict: 'E',
-                    require: ['pcdView', '^pcdViews'],
+                    restrict: "E",
+                    require: ["pcdView", "^pcdViews"],
                     controller: function ($element, $attrs) {
                         this.$name = $attrs.name;
-                        this.$show = function () { $element.show(); };
-                        this.$hide = function () { $element.hide(); };
+
+                        this.$show = function () {
+                            $element.show();
+                        };
+
+                        this.$hide = function () {
+                            $element.hide(); 
+                        };
                     },
                     link: function (scope, el, attrs, ctrls) {
                         var viewCtrl = ctrls[0];
