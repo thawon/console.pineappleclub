@@ -48,7 +48,7 @@
 
                     // change view mode
                     this.$views.$switchTo(VIEW_MODES.show);
-                    this.changeViewMode(CON_PERSONAL_VIEW_NAME, VIEW_MODES.show);
+                    this.changeViewMode("person", VIEW_MODES.show);
                 }
             }
         ]);
