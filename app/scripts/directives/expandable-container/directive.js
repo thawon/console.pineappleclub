@@ -15,8 +15,8 @@
                         element.find(".exp-header").html(attrs.header);
 
                         scope.toggle = function () {
-                            var $this = $(element);
-                            var $collapse = $this.find(".collapse-group").find(".collapse");
+                            var $this = $(element),
+                                $collapse = $this.find(".collapse-group").find(".collapse");
 
                             scope.expandable = $collapse.hasClass("collapse in") 
                                                 ? "/images/expand.png" 

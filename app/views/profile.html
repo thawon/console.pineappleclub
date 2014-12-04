@@ -3,14 +3,8 @@
     <h2>Profile</h2>
 
     <pcd-expandable-container data-header="Personal Details">
-        <div>
-            <button ng-if="(viewManager.views.personal.mode === 'show')" class="btn btn-sm btn-primary" 
-                ng-click="edit('Personal')">Edit</button>
-        </div>
-
-        <pcd-views>
-            
-            <pcd-view name="show" initial>
+        <pcd-entity-detail-container update-fn="updateFn()">
+            <div data-detail default data-mode="show">
                 <table class="table-views">
                     <thead>
                         <tr class="table-views-thead-tr">
@@ -28,29 +22,21 @@
                         </tr>
                     </tbody>
                 </table>
-            </pcd-view>
-            <pcd-view name="edit">
+            </div>
+            <div data-detail data-mode="edit">
                 <div>
                     <label class="label-block">First Name</label>
                     <input type="text" ng-model="currentUser.firstname" class="input-text-default">
                     <label class="label-block">Last Name</label>
                     <input type="text" ng-model="currentUser.lastname" class="input-text-default">
                 </div>
-                <button class="btn btn-sm btn-primary" ng-click="savePersonal()">Save</button>
-                <button class="btn btn-sm btn-primary" ng-click="cancelPersonal()">Cancel</button>
-            </pcd-view>
-        </pcd-views>
-        
+            </div>
+        </pcd-entity-detail-container>
     </pcd-expandable-container>
         
     <pcd-expandable-container data-header="Login">
-        <div>
-            <button ng-if="(viewManager.views.login.mode === 'show')" class="btn btn-sm btn-primary" 
-                ng-click="editLogin()">Edit</button>
-        </div>
-
-        <pcd-views>
-            <pcd-view name="show" initial>
+        <pcd-entity-detail-container update-fn="updateFnB()">
+            <div data-detail default data-mode="show">
                 <table class="table-views">
                     <thead>
                         <tr>
@@ -61,19 +47,16 @@
                         <tr>
                             <td class="label-inline">Email:</td>
                             <td class="label-inline">{{currentUser.email}}</td>
-                        </tr>                        
+                        </tr>
                     </tbody>
                 </table>
-            </pcd-view>
-            <pcd-view name="edit">
+            </div>
+            <div data-detail data-mode="edit">
                 <div>
                     <label class="label-block">Email</label>
                     <input type="text" ng-model="currentUser.email" class="input-text-default">
                 </div>
-                <button class="btn btn-sm btn-primary" ng-click="save()">Save</button>
-                <button class="btn btn-sm btn-primary" ng-click="cancelLogin()">Cancel</button>
-            </pcd-view>
-        </pcd-views>
-        
+            </div>
+        </pcd-entity-detail-container>
     </pcd-expandable-container>
 </div>
